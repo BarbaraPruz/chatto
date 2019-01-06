@@ -1,3 +1,5 @@
 <h2>Hi <%=@current_user.screen_name%></h2>
+<h3>Rooms</h3>
+<%= render 'rooms/rooms' %>
 <%= link_to "Logout", logout_path, :method => :delete %>
        

@@ -5,7 +5,6 @@ class RoomsController < ApplicationController
         @room=Room.find_by(:id => params[:id])
     end
 
-
     private
 
 end

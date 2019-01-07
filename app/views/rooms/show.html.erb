@@ -1,4 +1,11 @@
 <div>
     Room <%= @room.name %>
-    <%= link_to "Leave Room", user_path %>    
+    <%= link_to "Leave Room", user_path %>  
+    <ul>
+        <% @room.messages.each do | message | %>
+            <li>
+                <%= render partial: 'messages/show', locals: {message: message}%>
+            </li>
+        <% end %>
+    </ul>  
 </div>

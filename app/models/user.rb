@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+    has_many :rooms
+    has_many :messages
+
     has_secure_password
   
     validates :screen_name, presence: true

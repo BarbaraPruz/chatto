@@ -9,4 +9,7 @@ Rails.application.routes.draw do
 
   resources :users
   
+  # rooms and messages
+  resources :rooms
+  
 end

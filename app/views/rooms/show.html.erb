@@ -1,5 +1,5 @@
 <div>
-    Room <%= @room.name %>
+    <h2>Room <%= @room.name %></h2>
     <%= link_to "Leave Room", user_path %>  
     <ul>
         <% @room.messages.each do | message | %>
@@ -8,4 +8,5 @@
             </li>
         <% end %>
     </ul>  
+    <%= render partial: 'messages/new', locals: {message: @new_message} %>
 </div>

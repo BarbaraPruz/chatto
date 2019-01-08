@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   
   # rooms and messages
   resources :rooms
-  
+  resources :messages
 end

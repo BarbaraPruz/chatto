@@ -1,5 +1,7 @@
 <div>
     <%= form_for message do |f|%>
+        <%= f.hidden_field :room_id, :value => room_id %>
+        <%= f.hidden_field :user_id, :value => user_id %>        
         <%= f.text_area :content %>
         <%= f.submit 'Submit' %>
     <% end %>

@@ -24,3 +24,6 @@ Things you may want to cover:
 * ...
 
 Start app: rails s
+
+With React FE
+bundle exec rails s -p 3001

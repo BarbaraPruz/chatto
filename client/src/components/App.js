@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 
 import LoginForm from 'components/LoginForm';
 
-class App extends Component {
-  render() {
+
+export default ( { children }) => {
     return (
-      <div className="App">
-        <h1>Chatto - Let's talk</h1>
-        <LoginForm />
-      </div>
+        <div>
+            { children }
+        </div>
     );
-  }
 }
 
-export default App;
+

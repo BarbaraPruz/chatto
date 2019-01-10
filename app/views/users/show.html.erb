@@ -1,5 +1,0 @@
-<h2>Hi <%=@current_user.screen_name%></h2>
-<h3>Rooms</h3>
-<%= render partial: 'rooms/rooms', locals: {rooms: @rooms, showJoin: true}%>
-<%= link_to "Logout", logout_path, :method => :delete %>
-       

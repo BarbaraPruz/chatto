@@ -8,11 +8,10 @@ import reduxThunk from 'redux-thunk';
 import 'index.css';
 import App from 'components/App';
 import LoginForm from 'components/LoginForm';
-import reducers from './reducers';
+import rootReducer from './reducers';
 
 const store = createStore(
-    reducers,
-    {},
+    rootReducer,
     applyMiddleware(reduxThunk)
 );
 

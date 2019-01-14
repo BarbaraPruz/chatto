@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+
+import { loginUser } from 'actions/user';
 
 class LoginForm extends Component {
 
@@ -13,8 +16,8 @@ class LoginForm extends Component {
 
     handleLogin = (event) => {
         event.preventDefault();
-  //      this.props.handleSubmit(this.state);
-      console.log("Login submit",this.state.email, this.state.password);
+        console.log("Login submit",this.state.email, this.state.password);
+        this.props.loginUser(this.state);   
     }
     
     render() {
@@ -31,4 +34,4 @@ class LoginForm extends Component {
     }
 };
 
-export default LoginForm;
+export default connect(null,{loginUser})(LoginForm);

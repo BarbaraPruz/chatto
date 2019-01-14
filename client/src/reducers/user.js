@@ -1,10 +1,19 @@
 const INITIAL_STATE = {
     authenticated: '',
-    errorMessage: ''
+    errorMessage: '',
+    screenName: '',
+    userId: 0
 }
 export default function (
     state = INITIAL_STATE,
     action
 ){
-    return state;
+    console.log("User Reducer",action);
+    switch (action.type) { 
+        case "LOGIN_USER":
+            return {...state, errorMessage: "", 
+                authenticated: action.token, userId: action.id, screenName: action.screenName}
+        default:
+            return state;
+    }
 }

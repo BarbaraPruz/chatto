@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
-
-  # user and sessions
-  root 'application#welcome', as: :welcome
-
-  get '/login' => 'application#welcome'
-  post '/login' => 'sessions#create'
-  delete '/logout' => 'sessions#destroy' 
-
-  resources :users
   
-  # rooms and messages
-  resources :rooms
-  resources :messages
+  devise_for :users,
+             path: '',
+             path_names: {
+               sign_in: 'login',
+               sign_out: 'logout',
+               registration: 'signup'
+             },
+             controllers: {
+               sessions: 'sessions',
+               registrations: 'registrations'
+             }
+
 end

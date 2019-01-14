@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
-    before_action :require_logged_in
-
+    before_action :authenticate_user!
+    
     def create
         # validate user matches current user?
         message = Message.create(message_params) 

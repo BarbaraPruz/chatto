@@ -17,7 +17,9 @@ class LoginForm extends Component {
     handleLogin = (event) => {
         event.preventDefault();
         console.log("Login submit",this.state.email, this.state.password);
-        this.props.loginUser(this.state);   
+        this.props.loginUser(this.state, () => {
+            this.props.history.push('/rooms');
+        });                 
     }
     
     render() {

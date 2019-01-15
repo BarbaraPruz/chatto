@@ -8,6 +8,7 @@ import reduxThunk from 'redux-thunk';
 import 'index.css';
 import App from 'components/App';
 import LoginForm from 'components/LoginForm';
+import Rooms from 'components/Rooms';
 import rootReducer from './reducers';
 
 const store = createStore(
@@ -20,7 +21,8 @@ ReactDOM.render(
     <Provider store={store} >
         <BrowserRouter>
             <App>
-                <Route path="/" exact component={LoginForm} />            
+                <Route path="/" exact component={LoginForm} />
+                <Route path="/rooms" exact component={Rooms} />                                
             </App>
         </BrowserRouter>
     </Provider>,

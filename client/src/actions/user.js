@@ -7,8 +7,7 @@ function handleAPIErrors(res) {
     return res;   
 }
 
- 
-export function loginUser(credentials) {
+export function loginUser(credentials,callback) {
     console.log("Action Login User!",credentials);    
     return (dispatch) => {
 
@@ -34,6 +33,7 @@ export function loginUser(credentials) {
             .then (res =>{
                 console.log("Result",res);
                 dispatch({type:"LOGIN_USER", token:auth, id: res.id, screenName: res.screen_name });
+                callback();
             })
             .catch(function(error) {
                 console.log("Login Error",error);

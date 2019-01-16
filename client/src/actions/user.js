@@ -25,13 +25,12 @@ export function loginUser(credentials,callback) {
         fetch("/login", options)
             .then(res => handleAPIErrors(res))        
             .then(res => {
-                auth = res.headers.get('authorization');
-                console.log("setting jwt",auth);
-                localStorage.setItem("jwt", auth); // TODO: move to reducer?            
+                auth = res.headers.get('authorization');          
                 return res.json()            
             })
             .then (res =>{
-                console.log("Result",res);
+                console.log("setting jwt",auth);
+                localStorage.setItem("token", auth);                   
                 dispatch({type:"LOGIN_USER", token:auth, id: res.id, screenName: res.screen_name });
                 callback();
             })
@@ -40,4 +39,25 @@ export function loginUser(credentials,callback) {
             });             
     };
 }
+
+export const logoutUser = () => {
+    return (dispatch) => {
+        const token = localStorage.getItem("token");
+        const options = {
+            method: 'DELETE',
+            headers: new Headers({
+                'Authorization': `${token}`, 
+                'Content-Type': 'application/json'
+            })
+        };           
+        fetch("/logout", options)
+            .then(res => handleAPIErrors(res))         
+            .then(res => {
+                localStorage.removeItem('token');
+                dispatch({type: "LOGOUT_USER"})
+        }).catch(function(error) {
+            console.log(error);     
+        })        
+    }
+}    
 

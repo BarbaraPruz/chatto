@@ -8,11 +8,16 @@ import reduxThunk from 'redux-thunk';
 import 'index.css';
 import App from 'components/App';
 import LoginForm from 'components/LoginForm';
+import Logout from 'components/Logout';
 import Rooms from 'components/Rooms';
 import rootReducer from './reducers';
+import NavBar from 'components/NavBar';
 
 const store = createStore(
     rootReducer,
+    {   //initial state
+        user: { authenticated: localStorage.getItem('token')}
+    },      
     applyMiddleware(reduxThunk)
 );
 
@@ -20,11 +25,14 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={store} >
         <BrowserRouter>
-            <App>
+            <React.Fragment>
+                <NavBar />    
                 <Route path="/" exact component={LoginForm} />
-                <Route path="/rooms" exact component={Rooms} />                                
-            </App>
+                <Route path="/login" exact component={LoginForm} />
+                <Route path="/logout" exact component={Logout} />                                
+                <Route path="/rooms" exact component={Rooms} /> 
+            </React.Fragment> 
         </BrowserRouter>
     </Provider>,
-    document.querySelector('#root')
-);
+  document.getElementById('root')
+)

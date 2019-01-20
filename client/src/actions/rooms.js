@@ -7,7 +7,7 @@ function handleAPIErrors(res) {
     return res;   
 }
 
-export default function getRooms() {
+export function getRooms() {
     console.log("Get Rooms Action");    
     return (dispatch) => {
         let token = localStorage.getItem("token");                     
@@ -27,3 +27,27 @@ export default function getRooms() {
             })             
     };
 }
+
+export function getRoom(roomId,callback) {
+    console.log("Get Room",roomId);    
+    return (dispatch) => {
+        let token = localStorage.getItem("token");              
+        fetch(`/rooms/${roomId}`, 
+                { 
+                  headers: new Headers({
+                    'Authorization': `${token}`, 
+                    'Content-Type': 'application/json'
+                    })                  
+                })
+            .then(res => handleAPIErrors(res))        
+            .then(res => res.json())
+            .then (res =>{                
+                dispatch({type:"CURRENT_ROOM", payload: res});
+                callback();
+            })
+            .catch(function(error) {
+                console.log("Room Error",error);
+            })             
+    };
+}
+

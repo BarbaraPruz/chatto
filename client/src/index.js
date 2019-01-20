@@ -10,6 +10,7 @@ import App from 'components/App';
 import LoginForm from 'components/LoginForm';
 import Logout from 'components/Logout';
 import Rooms from 'components/Rooms';
+import Room from 'components/Room';
 import rootReducer from './reducers';
 import NavBar from 'components/NavBar';
 
@@ -28,9 +29,10 @@ ReactDOM.render(
             <React.Fragment>
                 <NavBar />    
                 <Route path="/" exact component={LoginForm} />
-                <Route path="/login" exact component={LoginForm} />
-                <Route path="/logout" exact component={Logout} />                                
-                <Route path="/rooms" exact component={Rooms} /> 
+                <Route path="/login"  component={LoginForm} />
+                <Route path="/logout"  component={Logout} />                                
+                <Route path="/rooms" component={Rooms} /> 
+                <Route path="/room/:roomId" component={Room} />
             </React.Fragment> 
         </BrowserRouter>
     </Provider>,

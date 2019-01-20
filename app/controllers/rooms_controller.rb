@@ -8,7 +8,7 @@ class RoomsController < ApplicationController
        
     def show
         @room=Room.find_by(:id => params[:id])
-        @new_message = Message.new(:user_id => current_user.id, :room_id => @room.id)
+        render json: @room, status: 200
     end        
 
     private

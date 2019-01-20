@@ -18,8 +18,8 @@ class LoginForm extends Component {
         event.preventDefault();
         console.log("Login submit",this.state.email, this.state.password);
         this.props.loginUser(this.state, () => {
-            this.props.history.push('/rooms');
-        });                 
+            this.props.history.push('/rooms');         
+        });                      
     }
     
     render() {

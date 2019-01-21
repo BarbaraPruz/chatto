@@ -13,7 +13,7 @@ class Room extends Component {
                 <ul>
                 {this.props.currentRoom.messages.map((message) => 
                     <li key={message.id}>
-                        {message.content}
+                        {message.user_name} - {message.content}
                     </li>)}             
                 </ul>
             </div>      

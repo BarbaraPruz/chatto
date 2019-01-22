@@ -16,6 +16,12 @@ export default function (
             console.log(action.payload);
             return {...state, currentRoom: action.payload}
             
+        case "ADD_MESSAGE":
+            console.log(action.payload);
+            return {...state, 
+                    currentRoom: {messages: [...state.currentRoom.messages, action.payload]}
+                    }
+            
         default:
             return state;
     }

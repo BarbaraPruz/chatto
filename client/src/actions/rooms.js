@@ -51,3 +51,29 @@ export function getRoom(roomId,callback) {
     };
 }
 
+export function addMessage(params) {
+    console.log("add message",params);  
+    return (dispatch) => {
+        let token = localStorage.getItem("token");  
+        const request = {
+            "message": {"content": params.content, "user_id": params.user_id, "room_id": params.room_id}
+        };
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(request),
+            headers: new Headers({
+                'Authorization': `${token}`, 
+                'Content-Type': 'application/json'
+            })
+        };
+        fetch(`/rooms/${params.roomId}/messages`, options)
+            .then(res => handleAPIErrors(res))        
+            .then(res => res.json())            
+            .then (res =>{                  
+                dispatch({type:"ADD_MESSAGE", payload:res});
+            })
+            .catch(function(error) {
+                console.log("Add Message Error",error);
+            });             
+    };
+}

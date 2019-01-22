@@ -12,5 +12,8 @@ Rails.application.routes.draw do
                registrations: 'registrations'
              }
 
-  resources :rooms
+  resources :rooms do
+    resources :messages
+  end
+
 end

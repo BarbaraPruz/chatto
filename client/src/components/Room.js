@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import requireAuth from 'components/requireAuth';
+import MessageForm from 'components/MessageForm';
 
 class Room extends Component {
    
@@ -16,6 +17,7 @@ class Room extends Component {
                         {message.user_name} - {message.content}
                     </li>)}             
                 </ul>
+                < MessageForm roomId={this.props.currentRoom.id}/>
             </div>      
         );
     }

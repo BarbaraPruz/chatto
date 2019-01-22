@@ -2,11 +2,15 @@ class MessagesController < ApplicationController
     before_action :authenticate_user!
     
     def create
+        puts "Message create params #{params}"
         # validate user matches current user?
-        message = Message.create(message_params) 
+        @message = Message.create(message_params) 
+        if !@message.valid?
+            puts "Failure #{@message.errors.full_messages}"
+        end
         # if invalid show message?
       ##  puts "Error! #{message.errors.full_messages}" if !message.valid?
-        redirect_to room_path(:id => params[:message][:room_id])
+        render json: @message, status: 200
     end        
 
     private

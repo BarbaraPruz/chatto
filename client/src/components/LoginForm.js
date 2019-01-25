@@ -10,6 +10,15 @@ class LoginForm extends Component {
         password: '',
     }
 
+    componentDidMount()  {
+        const { dispatch, currentURL } = this.props
+    
+        if (this.props.auth) {
+            // already logged in
+            this.props.history.push('/rooms');  
+        }
+    }
+
     handleChange = (event) => this.setState({
         [event.target.name]: event.target.value
     });
@@ -36,4 +45,10 @@ class LoginForm extends Component {
     }
 };
 
-export default connect(null,{loginUser})(LoginForm);
+const mapStateToProps = state => {
+    return {
+        auth: state.user.authenticated
+    }
+}    
+  
+export default connect(mapStateToProps,{loginUser})(LoginForm);

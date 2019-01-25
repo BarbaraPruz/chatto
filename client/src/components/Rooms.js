@@ -7,6 +7,7 @@ import { getRooms, getRoom } from 'actions/rooms';
 class Rooms extends Component {
    
     componentDidMount() {
+        console.log("Rooms component did mount")
         this.props.getRooms();
     }
 
@@ -41,7 +42,7 @@ const mapStateToProps = state => {
     }
 }
 export default compose (
-    connect(mapStateToProps, {getRooms, getRoom}),
-    requireAuth
+    requireAuth,    
+    connect(mapStateToProps, {getRooms, getRoom})
 ) (Rooms);
 

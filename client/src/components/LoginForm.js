@@ -1,7 +1,20 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles'
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Paper from '@material-ui/core/Paper';
 
 import { loginUser } from 'actions/user';
+import styles from 'components/Style'
 
 class LoginForm extends Component {
 
@@ -10,11 +23,8 @@ class LoginForm extends Component {
         password: '',
     }
 
-    componentDidMount()  {
-        const { dispatch, currentURL } = this.props
-    
-        if (this.props.auth) {
-            // already logged in
+    componentDidMount()  {   
+        if (this.props.auth) {  // already logged in           
             this.props.history.push('/rooms');  
         }
     }
@@ -25,23 +35,43 @@ class LoginForm extends Component {
 
     handleLogin = (event) => {
         event.preventDefault();
-        console.log("Login submit",this.state.email, this.state.password);
         this.props.loginUser(this.state, () => {
-            this.props.history.push('/rooms');         
-        });                      
+           this.props.history.push('/rooms');         
+       });                      
     }
     
     render() {
+        const { classes } = this.props; 
+
         return (
-            <div className="login-form">
-                <h1>chatto login</h1>
-                <form onSubmit={ event => this.handleLogin(event) }>
-                    <input type="text" name="email" onChange={ event => this.handleChange(event) } placeholder="User Email" />
-                    <input type="password" name="password" onChange={ event => this.handleChange(event) } placeholder="Password" />
-                    <button type="submit" >Login</button>
+            <main className={classes.main}>
+                <CssBaseline/>
+                <Paper className={classes.paper}>
+                <Typography component="h1" variant="h5">
+                    Sign in
+                </Typography>
+                <form onSubmit={ event => this.handleLogin(event) } className={classes.form}>
+                    <FormControl margin="normal" required fullWidth>
+                        <InputLabel htmlFor="email">Email Address</InputLabel>
+                        <Input onChange={ event => this.handleChange(event) } id="email" name="email" autoComplete="email" autoFocus />
+                    </FormControl>
+                    <FormControl margin="normal" required fullWidth>
+                        <InputLabel htmlFor="password">Password</InputLabel>
+                        <Input onChange={ event => this.handleChange(event) } name="password" type="password" id="password" autoComplete="current-password" />
+                    </FormControl>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={styles.submit}
+                        >
+                        Sign in
+                    </Button>
                 </form>
-            </div>      
-        );
+                </Paper>
+            </main>
+        )
     }
 };
 
@@ -50,5 +80,8 @@ const mapStateToProps = state => {
         auth: state.user.authenticated
     }
 }    
-  
-export default connect(mapStateToProps,{loginUser})(LoginForm);
+//export default withStyles(styles)(LoginForm);
+export default compose (
+    connect(mapStateToProps, {loginUser}),
+    withStyles(styles)
+) (LoginForm);

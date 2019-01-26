@@ -13,6 +13,7 @@ import Rooms from 'components/Rooms';
 import Room from 'components/Room';
 import rootReducer from './reducers';
 import NavBar from 'components/NavBar';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 const store = createStore(
     rootReducer,
@@ -26,14 +27,14 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={store} >
         <BrowserRouter>
-            <React.Fragment>
+            <MuiThemeProvider>
                 <NavBar />    
                 <Route path="/" exact component={LoginForm} />
                 <Route path="/login"  component={LoginForm} />
                 <Route path="/logout"  component={Logout} />                                
                 <Route path="/rooms" component={Rooms} /> 
                 <Route path="/room/:roomId" component={Room} />
-            </React.Fragment> 
+            </MuiThemeProvider> 
         </BrowserRouter>
     </Provider>,
   document.getElementById('root')

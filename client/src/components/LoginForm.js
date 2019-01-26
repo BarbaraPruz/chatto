@@ -10,7 +10,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles'
-import CssBaseline from '@material-ui/core/CssBaseline';
+//import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 
 import { loginUser } from 'actions/user';
@@ -44,8 +44,7 @@ class LoginForm extends Component {
         const { classes } = this.props; 
 
         return (
-            <main className={classes.main}>
-                <CssBaseline/>
+            <main className={classes.splashMain}>
                 <Paper className={classes.paper}>
                 <Typography component="h1" variant="h5">
                     Sign in

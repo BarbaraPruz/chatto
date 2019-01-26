@@ -14,7 +14,7 @@ import Room from 'components/Room';
 import rootReducer from './reducers';
 import NavBar from 'components/NavBar';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-
+import CssBaseline from '@material-ui/core/CssBaseline';
 const store = createStore(
     rootReducer,
     {   //initial state
@@ -28,6 +28,7 @@ ReactDOM.render(
     <Provider store={store} >
         <BrowserRouter>
             <MuiThemeProvider>
+                <CssBaseline />
                 <NavBar />    
                 <Route path="/" exact component={LoginForm} />
                 <Route path="/login"  component={LoginForm} />

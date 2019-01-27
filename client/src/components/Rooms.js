@@ -48,7 +48,7 @@ class Rooms extends Component {
                                     <Typography className={classes.title} color="textSecondary" gutterBottom>
                                         {room.description}
                                     </Typography>
-                                </CardContent>
+                                 </CardContent>
                                 <CardActions>
                                     <Button size="medium" color="primary" onClick={this.handleClick} id={room.id}>Join Conversation</Button>
                                 </CardActions>

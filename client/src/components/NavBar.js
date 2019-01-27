@@ -10,25 +10,35 @@ import Button from '@material-ui/core/Button';
 
  
 class NavBar extends Component {
-    render() {
-        //let userOptions=<NavLink to="/login" exact >Login</NavLink> ;
-        let logoutOption=null;        
-        if (this.props.userLoggedIn) {            
-            //userOptions = 
-                //<NavLink to="/rooms" exact >Rooms</NavLink> 
-            logoutOption = 
-                <Button color="inherit" component={Link} to="/logout">LOGOUT</Button>
-                //<NavLink to={`/logout`} exact>Logout</NavLink>            
+    
+    renderLinks() {
+        if (this.props.userLoggedIn) {
+            return (
+                <React.Fragment>
+                    <Button color="inherit" component={Link} to="/about">ABOUT</Button>
+                    <Button color="inherit" component={Link} to="/rooms">ROOMS</Button>
+                    <Button color="inherit" component={Link} to="/logout">LOGOUT</Button>             
+                </React.Fragment>
+            )
+        } else {
+            return (
+                <React.Fragment>
+                    <Button color="inherit" component={Link} to="/">LOGIN</Button>             
+                    <Button color="inherit" component={Link} to="/about">ABOUT</Button>
+                </React.Fragment> 
+            )           
         }
+    }
 
-        return (
-            <AppBar position="static">
-            <Toolbar>
-                <Typography variant="h6" color="inherit" style={{ flex: 1 }} >
-                    Chatto - let's talk!
-                </Typography>
-                {logoutOption}                              
-            </Toolbar>
+    render() {
+         return (
+            <AppBar position="fixed">
+                <Toolbar>
+                    <Typography variant="h6" color="inherit" style={{ flex: 1 }} >
+                        Chatto - let's talk!
+                    </Typography>
+                    {this.renderLinks()}                           
+                </Toolbar>
             </AppBar>
         );
     }

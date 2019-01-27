@@ -1,5 +1,6 @@
 const styles = theme => ({
   main: {
+    marginTop: theme.spacing.unit * 10, // account for fixed navbar
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
   },

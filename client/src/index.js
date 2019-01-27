@@ -11,6 +11,8 @@ import LoginForm from 'components/LoginForm';
 import Logout from 'components/Logout';
 import Rooms from 'components/Rooms';
 import Room from 'components/Room';
+import About from 'components/About';
+
 import rootReducer from './reducers';
 import NavBar from 'components/NavBar';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
@@ -32,7 +34,8 @@ ReactDOM.render(
                 <NavBar />    
                 <Route path="/" exact component={LoginForm} />
                 <Route path="/login"  component={LoginForm} />
-                <Route path="/logout"  component={Logout} />                                
+                <Route path="/logout"  component={Logout} />
+                <Route path="/about" component={About} />                                
                 <Route path="/rooms" component={Rooms} /> 
                 <Route path="/room/:roomId" component={Room} />
             </MuiThemeProvider> 

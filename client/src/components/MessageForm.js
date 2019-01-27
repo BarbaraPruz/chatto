@@ -1,7 +1,15 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import withStyles from '@material-ui/core/styles/withStyles'
 
 import { addMessage } from 'actions/rooms';
+import styles from 'components/Style'
 
 class MessageForm extends Component {
 
@@ -13,7 +21,6 @@ class MessageForm extends Component {
             room_id: this.props.roomId
         }      
     }
-
 
     handleChange = (event) => {
         this.setState({
@@ -28,13 +35,26 @@ class MessageForm extends Component {
     }
     
     render() {
+        const { classes } = this.props; 
         return (
-            <div className="message-form">
-                <form onSubmit={ event => this.handleSubmit(event) }>
-                    <input type="text" name="content" onChange={ event => this.handleChange(event) } value={this.state.content} />
-                    <button type="submit" >Send</button>
+            <div className={classes.main}>
+                <form onSubmit={ event => this.handleSubmit(event) } >
+                    <FormControl margin="normal" fullWidth>
+                        <InputLabel htmlFor="content">New Message</InputLabel>
+                        <Input onChange={ event => this.handleChange(event) } value={this.state.content} id="content" name="content" autoFocus />
+                    </FormControl>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={styles.submit}
+                        >
+                        Send
+                    </Button>
                 </form>
-            </div>      
+            </div>            
+ 
         );
     }
 };
@@ -44,4 +64,8 @@ const mapStateToProps = state => {
       userId: state.user.userId
     }
 }
-export default connect(mapStateToProps,{addMessage})(MessageForm);
+
+export default compose (
+    connect(mapStateToProps, {addMessage}),
+    withStyles(styles)
+) (MessageForm);

@@ -27,10 +27,10 @@ class Room extends Component {
                 <List>
                     {this.props.currentRoom.messages.map((message) => 
                         <React.Fragment>
+                             <Divider />                             
                             <ListItem>
                                 <ListItemText primary={message.content} secondary={message.user_name} />
                             </ListItem>
-                            <Divider />  
                         </React.Fragment>                  
                     )} 
                 </List>

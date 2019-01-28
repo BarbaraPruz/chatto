@@ -17,7 +17,9 @@ const RoomCard =  ({ classes, room, handleClick }) =>
             </Typography>
         </CardContent>
         <CardActions>
-            <Button size="medium" color="primary" onClick={handleClick} id={room.id}>Join Conversation</Button>
+            <Button size="medium" color="primary" 
+            onClick={ event => handleClick(event)} 
+             id={room.id}>Join Conversation</Button>
         </CardActions>
     </Card>
 

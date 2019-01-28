@@ -30,6 +30,7 @@ class MessageForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        console.log("Message form submit",this.state);
         this.props.addMessage(this.state);         
         this.setState({content: ''})                      
     }

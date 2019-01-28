@@ -19,7 +19,7 @@ class Rooms extends Component {
     }
 
     handleClick = (event) => { 
-        let roomId = event.target.id;
+        let roomId = event.currentTarget.id;
         console.log("joining room",roomId);
         this.props.getRoom(roomId, () => {
             this.props.history.push(`/room/${roomId}`)

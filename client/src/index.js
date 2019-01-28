@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 
-import 'index.css';
+import rootReducer from './reducers';
 import App from 'components/App';
 import LoginForm from 'components/LoginForm';
 import Logout from 'components/Logout';
@@ -13,10 +13,6 @@ import Rooms from 'components/Rooms';
 import Room from 'components/Room';
 import About from 'components/About';
 
-import rootReducer from './reducers';
-import NavBar from 'components/NavBar';
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import CssBaseline from '@material-ui/core/CssBaseline';
 const store = createStore(
     rootReducer,
     {   //initial state
@@ -29,16 +25,14 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={store} >
         <BrowserRouter>
-            <MuiThemeProvider>
-                <CssBaseline />
-                <NavBar />    
+            <App>
                 <Route path="/" exact component={LoginForm} />
                 <Route path="/login"  component={LoginForm} />
                 <Route path="/logout"  component={Logout} />
                 <Route path="/about" component={About} />                                
                 <Route path="/rooms" component={Rooms} /> 
                 <Route path="/room/:roomId" component={Room} />
-            </MuiThemeProvider> 
+            </App> 
         </BrowserRouter>
     </Provider>,
   document.getElementById('root')

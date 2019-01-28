@@ -7,10 +7,10 @@ import reduxThunk from 'redux-thunk';
 
 import rootReducer from './reducers';
 import App from 'components/App';
-import LoginForm from 'components/LoginForm';
-import Logout from 'components/Logout';
-import Rooms from 'components/Rooms';
-import Room from 'components/Room';
+import LoginForm from 'components/user/LoginForm';
+import Logout from 'components/user/Logout';
+import Rooms from 'components/rooms/Rooms';
+import Room from 'components/rooms/Room';
 import About from 'components/About';
 
 const store = createStore(

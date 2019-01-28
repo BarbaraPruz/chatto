@@ -2,11 +2,12 @@ const styles = theme => ({
   main: {
     marginTop: theme.spacing.unit * 10, // account for fixed navbar
     marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3, 
   },
   splashMain: {
     width: 'auto',
     display: 'block', // Fix IE 11 issue.
+    marginTop: theme.spacing.unit * 10, // account for fixed navbar   
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
@@ -24,7 +25,6 @@ const styles = theme => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing.unit,
   },
   submit: {
     marginTop: theme.spacing.unit * 3,

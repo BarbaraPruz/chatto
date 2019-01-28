@@ -2,15 +2,12 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles'
-//import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 
 import { loginUser } from 'actions/user';
@@ -45,7 +42,7 @@ class LoginForm extends Component {
 
         return (
             <main className={classes.splashMain}>
-                <Paper className={classes.paper}>
+                <Paper>
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
@@ -79,7 +76,7 @@ const mapStateToProps = state => {
         auth: state.user.authenticated
     }
 }    
-//export default withStyles(styles)(LoginForm);
+
 export default compose (
     connect(mapStateToProps, {loginUser}),
     withStyles(styles)

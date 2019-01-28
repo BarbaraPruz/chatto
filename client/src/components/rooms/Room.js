@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import requireAuth from 'components/requireAuth';
-import MessageForm from 'components/MessageForm';
+import MessageForm from 'components/rooms/MessageForm';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';

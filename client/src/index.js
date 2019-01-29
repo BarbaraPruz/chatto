@@ -31,7 +31,7 @@ ReactDOM.render(
                 <Route path="/logout"  component={Logout} />
                 <Route path="/about" component={About} />                                
                 <Route path="/rooms" component={Rooms} /> 
-                <Route path="/room/:roomId" component={Room} />
+                <Route path="/room/:id" component={Room} />
             </App> 
         </BrowserRouter>
     </Provider>,

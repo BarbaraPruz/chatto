@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -17,9 +18,9 @@ const RoomCard =  ({ classes, room, handleClick }) =>
             </Typography>
         </CardContent>
         <CardActions>
-            <Button size="medium" color="primary" 
-            onClick={ event => handleClick(event)} 
-             id={room.id}>Join Conversation</Button>
+            <Button component={ Link } to={`room/${room.id}`}  variant="contained" color="primary">
+                Join Conversation
+            </Button>             
         </CardActions>
     </Card>
 

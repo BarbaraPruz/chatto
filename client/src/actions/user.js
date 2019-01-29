@@ -40,7 +40,7 @@ export function loginUser(credentials,callback) {
     };
 }
 
-export const logoutUser = () => {
+export function logoutUser(callback) {
     return (dispatch) => {
         const token = localStorage.getItem("token");
         const options = {
@@ -54,7 +54,8 @@ export const logoutUser = () => {
             .then(res => handleAPIErrors(res))         
             .then(res => {
                 localStorage.removeItem('token');
-                dispatch({type: "LOGOUT_USER"})
+                dispatch({type: "LOGOUT_USER"});
+                callback();
         }).catch(function(error) {
             console.log(error);     
         })        

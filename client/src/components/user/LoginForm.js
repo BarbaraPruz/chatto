@@ -42,9 +42,9 @@ class LoginForm extends Component {
 
         return (
             <main className={classes.splashMain}>
-                <Paper>
+                <Paper className={classes.paper}>
                 <Typography component="h1" variant="h5">
-                    Sign in
+                    Let's Talk!
                 </Typography>
                 <form onSubmit={ event => this.handleLogin(event) } className={classes.form}>
                     <FormControl margin="normal" required fullWidth>

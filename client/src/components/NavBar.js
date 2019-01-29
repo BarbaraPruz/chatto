@@ -1,13 +1,15 @@
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
+import { compose } from 'redux';
 
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button';
+import withStyles from '@material-ui/core/styles/withStyles'
 
+import styles from 'components/Style'
  
 class NavBar extends Component {
     
@@ -31,11 +33,13 @@ class NavBar extends Component {
     }
 
     render() {
+        const { classes } = this.props; 
+
          return (
             <AppBar position="fixed">
                 <Toolbar>
-                    <Typography variant="h6" color="inherit" style={{ flex: 1 }} >
-                        Chatto - let's talk!
+                    <Typography variant="h6" color="inherit" className={classes.appTitle} >
+                        Chatto
                     </Typography>
                     {this.renderLinks()}                           
                 </Toolbar>
@@ -43,12 +47,13 @@ class NavBar extends Component {
         );
     }
 }
-
 const mapStateToProps = state => {
     return {
       userLoggedIn: state.user.authenticated,
     }
-  }
+}
 
-export default connect(mapStateToProps)(NavBar);  
-
+export default compose (
+    connect(mapStateToProps),
+    withStyles(styles)
+) (NavBar);

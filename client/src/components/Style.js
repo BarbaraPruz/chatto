@@ -30,7 +30,19 @@ const styles = theme => ({
   textPane: {   
     alignItems: 'left',
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,    
-  }, 
+  },
+  messageForm: {
+      display: 'flex',
+      flexDirection: 'row',
+  },
+   messageFormField: {
+    width: '90%'
+  },
+  messageSend: {
+    height: '60%',
+    marginTop: 'auto',
+    marginLeft: `${theme.spacing.unit}px`
+  },
   loginForm: {
     width: '100%', // Fix IE 11 issue.
   },

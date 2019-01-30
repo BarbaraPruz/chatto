@@ -7,6 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import withStyles from '@material-ui/core/styles/withStyles'
+import Paper from '@material-ui/core/Paper';
 
 import { addMessage } from 'actions/rooms';
 import styles from 'components/Style'
@@ -36,25 +37,26 @@ class MessageForm extends Component {
     }
     
     render() {
-        const { classes } = this.props; 
+        const { classes } = this.props;
+        const paperClasses = `${classes.paper}, ${classes.textPane}`;
+
         return (
-            <div>
-                <form onSubmit={ event => this.handleSubmit(event) } >
-                    <FormControl margin="normal" fullWidth>
+            <Paper className={paperClasses}>
+                <form onSubmit={ event => this.handleSubmit(event)} className={classes.messageForm} >
+                    <FormControl margin="normal" className={classes.messageFormField}>
                         <InputLabel htmlFor="content">New Message</InputLabel>
                         <Input onChange={ event => this.handleChange(event) } value={this.state.content} id="content" name="content" autoFocus />
                     </FormControl>
                     <Button
                         type="submit"
-                        fullWidth
                         variant="contained"
                         color="primary"
-                        className={styles.submit}
+                        className={classes.messageSend}
                         >
                         Send
                     </Button>
                 </form>
-            </div>            
+            </Paper>            
  
         );
     }

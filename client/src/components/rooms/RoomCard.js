@@ -18,7 +18,7 @@ const RoomCard =  ({ classes, room, handleClick }) =>
             </Typography>
         </CardContent>
         <CardActions>
-            <Button component={ Link } to={`room/${room.id}`}  variant="contained" color="primary">
+            <Button component={ Link } to={`rooms/${room.id}`}  variant="contained" color="primary">
                 Join Conversation
             </Button>             
         </CardActions>

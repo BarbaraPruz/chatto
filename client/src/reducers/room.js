@@ -21,7 +21,13 @@ export default function (
             return {...state, 
                     currentRoom: {messages: [...state.currentRoom.messages, action.payload]}
                     }
-            
+
+        case "UPDATE_MESSAGES": // may be more than 1 and so the payload is array
+            console.log(action.payload);
+            return {...state, 
+                    currentRoom: {messages: [...state.currentRoom.messages, ...action.payload]}
+                    } 
+                                       
         default:
             return state;
     }

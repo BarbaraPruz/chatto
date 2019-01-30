@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   resources :rooms do
     resources :messages
   end
+  get 'rooms/:id/updates/:message_id', to: 'rooms#updates'
 
 end

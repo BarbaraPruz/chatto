@@ -39,7 +39,7 @@ class NavBar extends Component {
             <AppBar position="fixed">
                 <Toolbar>
                     <Typography variant="h6" color="inherit" className={classes.appTitle} >
-                        Chatto
+                        Chatto 
                     </Typography>
                     {this.renderLinks()}                           
                 </Toolbar>

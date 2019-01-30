@@ -28,7 +28,7 @@ export function getRooms() {
     };
 }
 
-export function getRoom(roomId) {
+export function getRoom(roomId, callback) {
     console.log("Get Room",roomId);    
     return (dispatch) => {
         let token = localStorage.getItem("token");              
@@ -43,9 +43,34 @@ export function getRoom(roomId) {
             .then(res => res.json())
             .then (res =>{                
                 dispatch({type:"CURRENT_ROOM", payload: res});
+                callback();
             })
             .catch(function(error) {
                 console.log("Room Error",error);
+            })             
+    };
+}
+
+export function getMessageUpdates(roomId, lastMessage) {
+    console.log("Get Updates",roomId, lastMessage.id);    
+    return (dispatch) => {
+        let token = localStorage.getItem("token");              
+        fetch(`/rooms/${roomId}/updates/${lastMessage.id}`, 
+                { 
+                  headers: new Headers({
+                    'Authorization': `${token}`, 
+                    'Content-Type': 'application/json'
+                    })                  
+                })
+            .then(res => handleAPIErrors(res))        
+            .then(res => res.json())
+            .then (res =>{     
+                console.log("Have updates", res, res.length); 
+                if (res.length > 0)          
+                    dispatch({type:"UPDATE_MESSAGES", payload: res});
+            })
+            .catch(function(error) {
+                console.log("Message Update Error",error);
             })             
     };
 }
@@ -55,7 +80,7 @@ export function addMessage(params) {
     return (dispatch) => {
         let token = localStorage.getItem("token");  
         const request = {
-            "message": {"content": params.content, "user_id": params.user_id, "room_id": params.room_id}
+            "message": {"content": params.content, "user_id": params.userId, "room_id": params.roomId}
         };
         const options = {
             method: 'POST',

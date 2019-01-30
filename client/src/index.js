@@ -30,8 +30,8 @@ ReactDOM.render(
                 <Route path="/login"  component={LoginForm} />
                 <Route path="/logout"  component={Logout} />
                 <Route path="/about" component={About} />                                
-                <Route path="/rooms" component={Rooms} /> 
-                <Route path="/room/:id" component={Room} />
+                <Route path="/rooms" exact component={Rooms} /> 
+                <Route path="/rooms/:id" component={Room} />
             </App> 
         </BrowserRouter>
     </Provider>,

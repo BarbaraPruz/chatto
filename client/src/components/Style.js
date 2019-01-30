@@ -27,7 +27,11 @@ const styles = theme => ({
     alignItems: 'center',
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
   },
-  form: {
+  textPane: {   
+    alignItems: 'left',
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,    
+  }, 
+  loginForm: {
     width: '100%', // Fix IE 11 issue.
   },
   submit: {

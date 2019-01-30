@@ -51,8 +51,7 @@ export function getRoom(roomId, callback) {
     };
 }
 
-export function getMessageUpdates(roomId, lastMessage) {
-    console.log("Get Updates",roomId, lastMessage.id);    
+export function getMessageUpdates(roomId, lastMessage) {  
     return (dispatch) => {
         let token = localStorage.getItem("token");              
         fetch(`/rooms/${roomId}/updates/${lastMessage.id}`, 

@@ -46,7 +46,7 @@ class LoginForm extends Component {
                 <Typography component="h1" variant="h5">
                     Let's Talk!
                 </Typography>
-                <form onSubmit={ event => this.handleLogin(event) } className={classes.form}>
+                <form onSubmit={ event => this.handleLogin(event) } className={classes.loginForm}>
                     <FormControl margin="normal" required fullWidth>
                         <InputLabel htmlFor="email">Email Address</InputLabel>
                         <Input onChange={ event => this.handleChange(event) } id="email" name="email" autoComplete="email" autoFocus />

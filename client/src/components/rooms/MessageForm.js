@@ -38,7 +38,7 @@ class MessageForm extends Component {
     render() {
         const { classes } = this.props; 
         return (
-            <div className={classes.main}>
+            <div>
                 <form onSubmit={ event => this.handleSubmit(event) } >
                     <FormControl margin="normal" fullWidth>
                         <InputLabel htmlFor="content">New Message</InputLabel>

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography'
+import Paper from '@material-ui/core/Paper';
 
 import requireAuth from 'components/requireAuth';
 import MessageList from 'components/rooms/MessageList';
@@ -13,6 +14,8 @@ import { getRoom, getMessageUpdates } from 'actions/rooms';
 
 class Room extends Component {
 
+    // ToDo:  this section implements polling for new messages
+    // A better approach is to use websocket and have messages pushed
     constructor(props) {
         super(props);
         this.interval = 0;
@@ -35,23 +38,27 @@ class Room extends Component {
     
     componentDidMount() {
         const roomId = this.props.match.params.id;
-        console.log("Room did mount", roomId);
         this.props.getRoom(roomId, this.startInterval);
     }  
 
     componentWillUnmount() {
         this.cleanUpInterval();
     }
+    // End polling for new messages code
 
     render() {
         const { classes } = this.props;
+        const paperClasses = `${classes.paper}, ${classes.textPane}`;
+
         return (
             <main className={classes.main}> 
-                <Typography component="h1" variant="h4">
-                    {this.props.currentRoom.name}
-                </Typography>
-                <MessageList messages={this.props.currentRoom.messages} />
-                <MessageForm roomId={this.props.currentRoom.id} />
+                <Paper className={paperClasses}>                
+                    <Typography component="h1" variant="h4">
+                        {this.props.currentRoom.name}
+                    </Typography>
+                    <MessageList messages={this.props.currentRoom.messages} />
+                    <MessageForm roomId={this.props.currentRoom.id} />
+                </Paper>
             </main>      
         );
     }

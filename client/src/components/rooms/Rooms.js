@@ -24,7 +24,7 @@ class Rooms extends Component {
         return (
             <main className={classes.main}> 
 
-                <Typography component="h1" variant="h4">
+                <Typography component="h1" variant="h4" >
                     Rooms
                 </Typography>
                 <Grid container spacing={16}>

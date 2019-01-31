@@ -43,7 +43,7 @@ class LoginForm extends Component {
         return (
             <main className={mainClasses}>
                 <form onSubmit={ event => this.handleLogin(event) } className={classes.loginForm}>
-                    <Typography component="h1" variant="h5">
+                    <Typography component="h1" variant="h5" color="primary">
                         Let's Talk!
                     </Typography>
                     <FormControl margin="normal" required fullWidth>

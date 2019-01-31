@@ -18,6 +18,7 @@ const styles = theme => ({
   },
   appTitle: {
     flex: 1,
+    color: '#e1eaae', //'#B4C939'
   },
   paper: {
     marginTop: theme.spacing.unit * 8,

@@ -9,7 +9,10 @@ const theme = createMuiTheme({
     palette: {
       primary: { main: '#6083C4'}, 
       secondary: { main: '#CCDB4A'},
-      alternateTextColor: { main: '#007849'}
+      alternateTextColor: { main: '#007849'},
+      background: {
+        default: '#e6fafe',
+      },      
     },
     typography: { useNextVariants: true },
 });

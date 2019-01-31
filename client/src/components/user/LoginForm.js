@@ -42,10 +42,10 @@ class LoginForm extends Component {
         const mainClasses=`${classes.main}, ${classes.splashMain}`;
         return (
             <main className={mainClasses}>
-                <Typography component="h1" variant="h5">
-                    Let's Talk!
-                </Typography>
                 <form onSubmit={ event => this.handleLogin(event) } className={classes.loginForm}>
+                    <Typography component="h1" variant="h5">
+                        Let's Talk!
+                    </Typography>
                     <FormControl margin="normal" required fullWidth>
                         <InputLabel htmlFor="email">Email Address</InputLabel>
                         <Input onChange={ event => this.handleChange(event) } id="email" name="email" autoComplete="email" autoFocus />

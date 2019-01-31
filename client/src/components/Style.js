@@ -6,17 +6,15 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3, 
   },
-  splashMain: {
-    minHeight: '100%',
-    minWidth: '1024px',
+  splashMain: {    
     width: '100%',
-   // height: 'auto',
+    height: '100%',
     position: 'fixed',
-   // top: 0,
-   // left: 0,
-    backgroundImage: `url(${Image})`,
+    backgroundImage: `url(${Image}) `,
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain', //'cover',  
+    backgroundSize: '100% 100%',
+    display:'flex',
+    justifyContent:'center',  
   },
   appTitle: {
     flex: 1,
@@ -45,13 +43,13 @@ const styles = theme => ({
     marginLeft: `${theme.spacing.unit}px`
   },
   loginForm: {
-    marginTop: theme.spacing.unit * 8,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
-
-    width: '40%'
+    width: '40%',
+    height: '100%',
+    justifyContent: 'center'
   },
   submit: {
     marginTop: theme.spacing.unit * 3,

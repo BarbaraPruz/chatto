@@ -1,3 +1,4 @@
+import Image from 'images/green-381334_640.png'; 
 
 const styles = theme => ({
   main: {
@@ -6,16 +7,16 @@ const styles = theme => ({
     marginRight: theme.spacing.unit * 3, 
   },
   splashMain: {
-    width: 'auto',
-    display: 'block', // Fix IE 11 issue.
-    marginTop: theme.spacing.unit * 20, // account for fixed navbar   
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-      width: 400,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
+    minHeight: '100%',
+    minWidth: '1024px',
+    width: '100%',
+   // height: 'auto',
+    position: 'fixed',
+   // top: 0,
+   // left: 0,
+    backgroundImage: `url(${Image})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain', //'cover',  
   },
   appTitle: {
     flex: 1,
@@ -44,7 +45,13 @@ const styles = theme => ({
     marginLeft: `${theme.spacing.unit}px`
   },
   loginForm: {
-    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing.unit * 8,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+
+    width: '40%'
   },
   submit: {
     marginTop: theme.spacing.unit * 3,

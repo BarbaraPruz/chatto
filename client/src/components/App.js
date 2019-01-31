@@ -7,8 +7,8 @@ import NavBar from 'components/NavBar';
 
 const theme = createMuiTheme({
     palette: {
-      primary: { main: '#0375b4'}, 
-      secondary: { main: '#007849'},
+      primary: { main: '#6083C4'}, 
+      secondary: { main: '#CCDB4A'},
       alternateTextColor: { main: '#007849'}
     },
     typography: { useNextVariants: true },

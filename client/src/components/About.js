@@ -32,7 +32,7 @@ class About extends Component {
                         As a portfolio project, I wanted to use chatto to gain additional experience
                         with different components.  On the rails backend, chatto uses devise-jwt with
                         blacklist for token revocation.   On the front end, React Material-ui provides
-                        the styling, and a React high-order-component verifies access to protected pages
+                        the styling, and a React high-order-component verifies access to protected pages.<br/>
                         <em>Next up for this project - websockets with Rails Action Cable!</em>
                     </Typography>
                 </Paper>               

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { ActionCableProvider, ActionCableConsumer } from 'react-actioncable-provider';
 
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography'
@@ -12,54 +13,60 @@ import MessageForm from 'components/rooms/MessageForm';
 import styles from 'components/Style'
 import { getRoom, getMessageUpdates } from 'actions/rooms';
 
-class Room extends Component {
+const API_WS_ROOT = 'ws://localhost:3001/cable';
 
-    // ToDo:  this section implements polling for new messages
-    // A better approach is to use websocket and have messages pushed
+class Room extends Component {
+    
     constructor(props) {
         super(props);
-        this.interval = 0;
+        this.token = localStorage.getItem('token');
+        this.wsURL = `${API_WS_ROOT}?token=${this.token}`
+        this.state = {
+            roomId: this.props.match.params.id,
+            messages: []
+        }
     }
-
-    startInterval = () => {
-        this.interval = setInterval(this.checkMessageUpdates, 5000);
-    };
-
-    cleanUpInterval = () => {
-        clearInterval(this.interval);
-    };
-
-    checkMessageUpdates = () => {
-       const roomId = this.props.currentRoom.id;
-       const lastMessageIndex = this.props.currentRoom.messages.length - 1 
-       const lastMessage =  this.props.currentRoom.messages[lastMessageIndex];      
-       this.props.getMessageUpdates(roomId, lastMessage);
-    } 
-    
+   
     componentDidMount() {
-        const roomId = this.props.match.params.id;
-        this.props.getRoom(roomId, this.startInterval);
-    }  
+        fetch(`/rooms/${this.state.roomId}`,
+            { 
+                headers: new Headers({
+                'Authorization': `${this.token}`, 
+                'Content-Type': 'application/json'
+                })                  
+            })
+          .then(res => res.json())
+          .then(room => {
+              console.log("Room component did mount",room.messages)
+              this.setState({ messages: room.messages })});
+      };
 
-    componentWillUnmount() {
-        this.cleanUpInterval();
-    }
-    // End polling for new messages code
-
+      handleReceivedMessage = response => {
+          console.log("YES!!!!")
+        const { message } = response;
+        this.setState({ messages: [...this.state.messages, message] });
+      };
     render() {
         const { classes } = this.props;
         const paperClasses = `${classes.paper}, ${classes.textPane}`;
-
+console.log("Room render", this.state)
         return (
+            <ActionCableProvider url={this.wsURL}>
             <main className={classes.main}> 
                 <Paper className={paperClasses}>                
                     <Typography component="h1" variant="h4">
                         {this.props.currentRoom.name}
                     </Typography>
-                    <MessageList messages={this.props.currentRoom.messages} />
-                    <MessageForm roomId={this.props.currentRoom.id} />
+                    <ActionCableConsumer
+            key={this.state.roomId}  
+            channel={{ channel: 'MessagesChannel', room: this.state.roomId }}
+            onReceived={this.handleReceivedMessage}
+          />                    
+                    <MessageList messages={this.state.messages} />
+                    <MessageForm roomId={this.state.roomId} />
                 </Paper>
-            </main>      
+            </main>  
+            </ActionCableProvider>    
         );
     }
 };
@@ -70,7 +77,7 @@ const mapStateToProps = state => {
     }
 }
 export default compose (
-    connect(mapStateToProps, {getRoom, getMessageUpdates}),
+    connect(mapStateToProps),
     requireAuth,
     withStyles(styles)  
 ) (Room);

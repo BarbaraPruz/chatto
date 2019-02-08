@@ -8,7 +8,6 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles'
-import Paper from '@material-ui/core/Paper';
 
 import { loginUser } from 'actions/user';
 import styles from 'components/Style'
@@ -80,28 +79,3 @@ export default compose (
     withStyles(styles)
 ) (LoginForm);
 
-/* 
-                <Paper className={classes.paper}>
-                <Typography component="h1" variant="h5">
-                    Let's Talk!
-                </Typography>
-                <form onSubmit={ event => this.handleLogin(event) } className={classes.loginForm}>
-                    <FormControl margin="normal" required fullWidth>
-                        <InputLabel htmlFor="email">Email Address</InputLabel>
-                        <Input onChange={ event => this.handleChange(event) } id="email" name="email" autoComplete="email" autoFocus />
-                    </FormControl>
-                    <FormControl margin="normal" required fullWidth>
-                        <InputLabel htmlFor="password">Password</InputLabel>
-                        <Input onChange={ event => this.handleChange(event) } name="password" type="password" id="password" autoComplete="current-password" />
-                    </FormControl>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={styles.submit}
-                        >
-                        Sign in
-                    </Button>
-                </form>
-                </Paper>*/

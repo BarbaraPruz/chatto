@@ -19,7 +19,6 @@ class MessageForm extends Component {
         this.state = {
             content: '', 
         }      
-        console.log("Message Form constructor",this.props);
     }
 
     handleChange = (event) => {
@@ -30,7 +29,6 @@ class MessageForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log("Message form submit",this.props, this.state);
         this.props.addMessage({userId: this.props.userId, 
                                roomId: this.props.roomId, 
                                content: this.state.content});         

@@ -14,7 +14,6 @@ import RoomCard from 'components/rooms/RoomCard';
 class Rooms extends Component {
    
     componentDidMount() {
-        console.log("Rooms component did mount")
         this.props.getRooms();
     }
 
@@ -29,7 +28,7 @@ class Rooms extends Component {
                 </Typography>
                 <Grid container spacing={16}>
                    {this.props.rooms.map((room) => 
-                        <Grid item xs={4}>
+                        <Grid item xs={4} key={room.id}>
                             <RoomCard classes={classes} room={room}  />
                         </Grid> 
                     )}    

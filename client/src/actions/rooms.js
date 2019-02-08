@@ -8,7 +8,6 @@ function handleAPIErrors(res) {
 }
 
 export function getRooms() {
-    console.log("Get Rooms Action");    
     return (dispatch) => {
         let token = localStorage.getItem("token");                     
         fetch(`/rooms`, 
@@ -28,31 +27,9 @@ export function getRooms() {
     };
 }
 
-export function getRoom(roomId) {
-    console.log("Get Room",roomId);    
-    return (dispatch) => {
-        let token = localStorage.getItem("token");              
-        fetch(`/rooms/${roomId}`, 
-                { 
-                  headers: new Headers({
-                    'Authorization': `${token}`, 
-                    'Content-Type': 'application/json'
-                    })                  
-                })
-            .then(res => handleAPIErrors(res))        
-            .then(res => res.json())
-            .then (res =>{                
-                dispatch({type:"CURRENT_ROOM", payload: res});
-            })
-            .catch(function(error) {
-                console.log("Room Error",error);
-            })             
-    };
-}
 
 
 export function addMessage(params) {
-    console.log("add message",params);  
     return (dispatch) => {
         let token = localStorage.getItem("token");  
         const request = {
@@ -66,12 +43,9 @@ export function addMessage(params) {
                 'Content-Type': 'application/json'
             })
         };
+        // NOTE: added message will be broadcasted over WS
         fetch(`/rooms/${params.roomId}/messages`, options)
             .then(res => handleAPIErrors(res))        
-            // .then(res => res.json())            
-            // .then (res =>{                  
-            //     dispatch({type:"ADD_MESSAGE", payload:res});
-            // })
             .catch(function(error) {
                 console.log("Add Message Error",error);
             });             

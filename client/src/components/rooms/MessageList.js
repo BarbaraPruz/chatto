@@ -12,11 +12,10 @@ class MessageList extends Component {
 
     render() {
         const { classes } = this.props;
-        console.log("message list render",this.props)
         return (
             <List>
                 {this.props.messages.map((message) => 
-                    <React.Fragment>
+                    <React.Fragment key={message.id}>
                         <Divider /> 
                         <ListItem>
                             <ListItemText 

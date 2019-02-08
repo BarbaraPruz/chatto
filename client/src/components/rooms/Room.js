@@ -11,7 +11,6 @@ import requireAuth from 'components/requireAuth';
 import MessageList from 'components/rooms/MessageList';
 import MessageForm from 'components/rooms/MessageForm';
 import styles from 'components/Style'
-import { getRoom, getMessageUpdates } from 'actions/rooms';
 
 const API_WS_ROOT = 'ws://localhost:3001/cable';
 
@@ -37,19 +36,17 @@ class Room extends Component {
             })
           .then(res => res.json())
           .then(room => {
-              console.log("Room component did mount",room.messages)
               this.setState({ messages: room.messages })});
       };
 
       handleReceivedMessage = response => {
-          console.log("YES!!!!")
         const { message } = response;
         this.setState({ messages: [...this.state.messages, message] });
       };
     render() {
         const { classes } = this.props;
         const paperClasses = `${classes.paper}, ${classes.textPane}`;
-console.log("Room render", this.state)
+
         return (
             <ActionCableProvider url={this.wsURL}>
             <main className={classes.main}> 
@@ -58,10 +55,10 @@ console.log("Room render", this.state)
                         {this.props.currentRoom.name}
                     </Typography>
                     <ActionCableConsumer
-            key={this.state.roomId}  
-            channel={{ channel: 'MessagesChannel', room: this.state.roomId }}
-            onReceived={this.handleReceivedMessage}
-          />                    
+                        key={this.state.roomId}  
+                        channel={{ channel: 'MessagesChannel', room: this.state.roomId }}
+                        onReceived={this.handleReceivedMessage}
+                    />                    
                     <MessageList messages={this.state.messages} />
                     <MessageForm roomId={this.state.roomId} />
                 </Paper>

@@ -12,8 +12,7 @@ class MessagesController < ApplicationController
           ).serializable_hash
           MessagesChannel.broadcast_to room, serialized_data
           head :ok
-        end 
-        puts "Mesage not saved #{message.errors.full_messages}"      
+        end   
     end        
 
     private

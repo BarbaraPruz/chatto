@@ -7,28 +7,26 @@ export default (ChildComponent) => {
 
         // Re-usable code
         componentDidMount() {
-            console.log("require auth component did mount")
             this.shouldNavigateAway();
         }
         componentDidUpdate() {
             this.shouldNavigateAway();
         }    
         shouldNavigateAway() {
-
-
             if (!this.props.auth)
                 this.props.history.push('/login');
         }
-        
-        
+               
         render() {
             return <ChildComponent {...this.props} />
         }
     };
+
     const mapStateToProps = state => {
         return {
             auth: state.user.authenticated
         }
     }
+    
     return connect(mapStateToProps)(ComposedComponent);
 };

@@ -8,7 +8,7 @@ export default function (
     state = INITIAL_STATE,
     action
 ){
-    console.log("User Reducer",action.type);
+    // console.log("User Reducer",action.type);
     switch (action.type) { 
         case "LOGIN_USER":
             return {...state, errorMessage: '', 

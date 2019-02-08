@@ -33,6 +33,12 @@ class About extends Component {
                         with different components.  On the rails backend, chatto uses devise-jwt with
                         blacklist for token revocation.   On the front end, React Material-ui provides
                         the styling, and a React high-order-component verifies access to protected pages.
+                        For real time updates of new messages, WebSockets is used (Rails Action Cable with
+                        React Action Cable Provider).
+                    </Typography>
+                    <Typography paragraph>
+                        Landing page graphics provided created by Stux and available on 
+                        <a href="https://pixabay.com/en/balloon-message-talk-say-381334/" target="_blank" rel="noopener noreferrer">Pixabay</a>
                     </Typography>
                 </Paper>               
             </main>

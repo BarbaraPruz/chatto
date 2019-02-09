@@ -19,15 +19,18 @@ class Room extends Component {
     constructor(props) {
         super(props);
         this.token = localStorage.getItem('token');
-        this.wsURL = `${API_WS_ROOT}?token=${this.token}`
+        this.wsURL = `${API_WS_ROOT}?token=${this.token}`;
+
+        let roomId = Number(this.props.match.params.id);
+        let room = this.props.rooms.find( (r) => r.id === roomId);
         this.state = {
-            roomId: this.props.match.params.id,
+            room: room,
             messages: []
         }
     }
    
     componentDidMount() {
-        fetch(`/rooms/${this.state.roomId}`,
+        fetch(`/rooms/${this.state.room.id}`,
             { 
                 headers: new Headers({
                 'Authorization': `${this.token}`, 
@@ -39,10 +42,11 @@ class Room extends Component {
               this.setState({ messages: room.messages })});
       };
 
-      handleReceivedMessage = response => {
+    handleReceivedMessage = response => {
         const { message } = response;
         this.setState({ messages: [...this.state.messages, message] });
-      };
+    };
+
     render() {
         const { classes } = this.props;
         const paperClasses = `${classes.paper}, ${classes.textPane}`;
@@ -52,15 +56,15 @@ class Room extends Component {
             <main className={classes.main}> 
                 <Paper className={paperClasses}>                
                     <Typography component="h1" variant="h4">
-                        {this.props.currentRoom.name}
+                        {this.state.room.name}
                     </Typography>
                     <ActionCableConsumer
-                        key={this.state.roomId}  
-                        channel={{ channel: 'MessagesChannel', room: this.state.roomId }}
+                        key={this.state.room.id}  
+                        channel={{ channel: 'MessagesChannel', room: this.state.room.id }}
                         onReceived={this.handleReceivedMessage}
                     />                    
                     <MessageList messages={this.state.messages} />
-                    <MessageForm roomId={this.state.roomId} />
+                    <MessageForm roomId={this.state.room.id} />
                 </Paper>
             </main>  
             </ActionCableProvider>    
@@ -70,7 +74,7 @@ class Room extends Component {
 
 const mapStateToProps = state => {
     return {
-      currentRoom: state.room.currentRoom
+      rooms: state.room.rooms
     }
 }
 export default compose (

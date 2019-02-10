@@ -26,4 +26,3 @@ production:
   <<: *default
   database: db/production
 #  database: db/production.sqlite3
-

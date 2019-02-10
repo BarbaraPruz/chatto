@@ -12,7 +12,8 @@ import MessageList from 'components/rooms/MessageList';
 import MessageForm from 'components/rooms/MessageForm';
 import styles from 'components/Style'
 
-const API_WS_ROOT = 'ws://localhost:3001/cable';
+//const API_WS_ROOT = 'ws://localhost:3001/cable';
+const API_WS_ROOT = 'wss://secure-savannah-88233.heroku.com/cable';
 
 class Room extends Component {
     

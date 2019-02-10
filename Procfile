@@ -1,3 +1,1 @@
-web: cd client && npm start
-api: bundle exec rails s -p 3001
-log: tail -f log/development.log
+web: bundle exec rails s

@@ -9,7 +9,7 @@ dynos are used, it would be additional cost).
 
 # Installation Instructions
 * Fork and clone this GIT repo. 
-* For running on localhost, rename Procfile-local to Procfile.
+* For running on localhost, copy Procfile-localhost to Procfile.
 * Set up backend by running bundle install, rake db:migrate and rake db:seed
 * Set up frontend by going to client folder and running npm install
 

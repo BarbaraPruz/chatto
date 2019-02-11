@@ -28,7 +28,7 @@ class Rooms extends Component {
                 </Typography>
                 <Grid container spacing={16}>
                    {this.props.rooms.map((room) => 
-                        <Grid item xs={4}>
+                        <Grid key={room.id} item xs={4}>
                             <RoomCard classes={classes} room={room}  />
                         </Grid> 
                     )}    

@@ -3,6 +3,9 @@ Just having fun here!  Chatto is a simple chat app.
 
 Implementation conists of a Rails backend and React frontend.
 
+In the master branch, chat messages are updated through polling logic.  In the WebSockets
+branch, the polling is replaced with websockets using Active Cable.  Note that the WebSockets branch in not deployed to Heroku (requires moving to wss and because no paid
+dynos are used, it would be additional cost).
 
 # Installation Instructions
 * Fork and clone this GIT repo. 

@@ -18,28 +18,26 @@ class Room extends Component {
     // A better approach is to use websocket and have messages pushed
     constructor(props) {
         super(props);
-        this.state = {
-            interval: 0,
-            roomId: this.props.match.params.id  
-        }
+        this.interval = 0;
+        this.roomId = this.props.match.params.id  
     }
 
     startInterval = () => {
-        this.state.interval = setInterval(this.checkMessageUpdates, 5000);
+        this.interval = setInterval(this.checkMessageUpdates, 5000);
     };
 
     cleanUpInterval = () => {
-        clearInterval(this.state.interval);
+        clearInterval(this.interval);
     };
 
     checkMessageUpdates = () => {
        const lastMessageIndex = this.props.currentRoom.messages.length - 1;
        let lastMessage = this.props.currentRoom.messages[lastMessageIndex] || null;      
-       this.props.getMessageUpdates(this.state.roomId, lastMessage);
+       this.props.getMessageUpdates(this.roomId, lastMessage);
     } 
     
     componentDidMount() {
-        this.props.getRoom(this.state.roomId, this.startInterval);
+        this.props.getRoom(this.roomId, this.startInterval);
     }  
 
     componentWillUnmount() {
@@ -58,7 +56,7 @@ class Room extends Component {
                         {this.props.currentRoom.name}
                     </Typography>
                     <MessageList messages={this.props.currentRoom.messages} />
-                    <MessageForm roomId={this.state.roomId} />
+                    <MessageForm roomId={this.roomId} />
                 </Paper>
             </main>      
         );

@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   resources :rooms do
     resources :messages
   end
-
-  mount ActionCable.server => '/cable'
+  get 'rooms/:id/updates/:message_id', to: 'rooms#updates'
+  
 end

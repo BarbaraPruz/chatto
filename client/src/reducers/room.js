@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
     rooms: [],
+    currentRoom: {messages:[]}
 }
 
 export default function (
@@ -13,6 +14,10 @@ export default function (
  
         case "CURRENT_ROOM":
             return {...state, currentRoom: action.payload}
+           
+        case "CLEAR_CURRENT_ROOM":
+            return {...state, currentRoom: {messages:[]}}
+            
             
         case "ADD_MESSAGE":
             return {...state, 

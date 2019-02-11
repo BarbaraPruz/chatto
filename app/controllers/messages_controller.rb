@@ -3,16 +3,14 @@ class MessagesController < ApplicationController
     
     def create
         puts "Message create params #{params}"
-        message = Message.new(message_params)
-        room = Room.find(message_params[:room_id])
-        if message.save
-            puts "Message saved"
-          serialized_data = ActiveModelSerializers::Adapter::Json.new(
-            MessageSerializer.new(message)
-          ).serializable_hash
-          MessagesChannel.broadcast_to room, serialized_data
-          head :ok
-        end   
+        # validate user matches current user?
+        @message = Message.create(message_params) 
+        if !@message.valid?
+            puts "Failure #{@message.errors.full_messages}"
+        end
+        # if invalid show message?
+      ##  puts "Error! #{message.errors.full_messages}" if !message.valid?
+        render json: @message, status: 200
     end        
 
     private

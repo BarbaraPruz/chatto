@@ -25,8 +25,9 @@ class MessageList extends Component {
                         </ListItem>                       
                     </React.Fragment>                  
                 )} 
-            </List>          
+                </List>     
         );
+
     }
 }
 

@@ -49,6 +49,10 @@ export function getRoom(roomId, callback) {
     };
 }
 
+export function clearCurrentRoom() { 
+    return (dispatch) => dispatch({type:"CLEAR_CURRENT_ROOM"});
+}
+
 export function getMessageUpdates(roomId, lastMessage) {  
     return (dispatch) => {
         let token = localStorage.getItem("token"); 

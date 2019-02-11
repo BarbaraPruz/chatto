@@ -7,7 +7,6 @@ export default (ChildComponent) => {
 
         // Re-usable code
         componentDidMount() {
-            console.log("require auth component did mount")
             this.shouldNavigateAway();
         }
         componentDidUpdate() {

@@ -14,7 +14,6 @@ import RoomCard from 'components/rooms/RoomCard';
 class Rooms extends Component {
    
     componentDidMount() {
-        console.log("Rooms component did mount")
         this.props.getRooms();
     }
 

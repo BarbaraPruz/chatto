@@ -7,8 +7,7 @@ function handleAPIErrors(res) {
     return res;   
 }
 
-export function getRooms() {
-    console.log("Get Rooms Action");    
+export function getRooms() { 
     return (dispatch) => {
         let token = localStorage.getItem("token");                     
         fetch(`/rooms`, 
@@ -28,8 +27,7 @@ export function getRooms() {
     };
 }
 
-export function getRoom(roomId, callback) {
-    console.log("Get Room",roomId);    
+export function getRoom(roomId, callback) { 
     return (dispatch) => {
         let token = localStorage.getItem("token");              
         fetch(`/rooms/${roomId}`, 
@@ -53,8 +51,9 @@ export function getRoom(roomId, callback) {
 
 export function getMessageUpdates(roomId, lastMessage) {  
     return (dispatch) => {
-        let token = localStorage.getItem("token");              
-        fetch(`/rooms/${roomId}/updates/${lastMessage.id}`, 
+        let token = localStorage.getItem("token"); 
+        let id = lastMessage ? lastMessage.id : 0;             
+        fetch(`/rooms/${roomId}/updates/${id}`, 
                 { 
                   headers: new Headers({
                     'Authorization': `${token}`, 
@@ -64,7 +63,6 @@ export function getMessageUpdates(roomId, lastMessage) {
             .then(res => handleAPIErrors(res))        
             .then(res => res.json())
             .then (res =>{     
-                console.log("Have updates", res, res.length); 
                 if (res.length > 0)          
                     dispatch({type:"UPDATE_MESSAGES", payload: res});
             })
@@ -74,8 +72,7 @@ export function getMessageUpdates(roomId, lastMessage) {
     };
 }
 
-export function addMessage(params) {
-    console.log("add message",params);  
+export function addMessage(params) { 
     return (dispatch) => {
         let token = localStorage.getItem("token");  
         const request = {

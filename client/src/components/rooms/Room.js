@@ -18,27 +18,28 @@ class Room extends Component {
     // A better approach is to use websocket and have messages pushed
     constructor(props) {
         super(props);
-        this.interval = 0;
+        this.state = {
+            interval: 0,
+            roomId: this.props.match.params.id  
+        }
     }
 
     startInterval = () => {
-        this.interval = setInterval(this.checkMessageUpdates, 5000);
+        this.state.interval = setInterval(this.checkMessageUpdates, 5000);
     };
 
     cleanUpInterval = () => {
-        clearInterval(this.interval);
+        clearInterval(this.state.interval);
     };
 
     checkMessageUpdates = () => {
-       const roomId = this.props.currentRoom.id;
-       const lastMessageIndex = this.props.currentRoom.messages.length - 1 
-       const lastMessage =  this.props.currentRoom.messages[lastMessageIndex];      
-       this.props.getMessageUpdates(roomId, lastMessage);
+       const lastMessageIndex = this.props.currentRoom.messages.length - 1;
+       let lastMessage = this.props.currentRoom.messages[lastMessageIndex] || null;      
+       this.props.getMessageUpdates(this.state.roomId, lastMessage);
     } 
     
     componentDidMount() {
-        const roomId = this.props.match.params.id;
-        this.props.getRoom(roomId, this.startInterval);
+        this.props.getRoom(this.state.roomId, this.startInterval);
     }  
 
     componentWillUnmount() {
@@ -57,7 +58,7 @@ class Room extends Component {
                         {this.props.currentRoom.name}
                     </Typography>
                     <MessageList messages={this.props.currentRoom.messages} />
-                    <MessageForm roomId={this.props.currentRoom.id} />
+                    <MessageForm roomId={this.state.roomId} />
                 </Paper>
             </main>      
         );
@@ -66,7 +67,7 @@ class Room extends Component {
 
 const mapStateToProps = state => {
     return {
-      currentRoom: state.room.currentRoom
+      currentRoom: state.room.currentRoom   // currentRoom not set until component did mount
     }
 }
 export default compose (

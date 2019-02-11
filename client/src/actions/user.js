@@ -7,10 +7,8 @@ function handleAPIErrors(res) {
     return res;   
 }
 
-export function loginUser(credentials,callback) {
-    console.log("Action Login User!",credentials);    
+export function loginUser(credentials,callback) {   
     return (dispatch) => {
-
         const request = {"user": {"email": credentials.email, "password": credentials.password}}
         const options = {
             method: 'POST',
@@ -20,8 +18,6 @@ export function loginUser(credentials,callback) {
             }
         };
         let auth;
-
-        console.log("Login Request",request)
         fetch("/login", options)
             .then(res => handleAPIErrors(res))        
             .then(res => {
@@ -29,7 +25,6 @@ export function loginUser(credentials,callback) {
                 return res.json()            
             })
             .then (res =>{
-                console.log("setting jwt",auth);
                 localStorage.setItem("token", auth);                   
                 dispatch({type:"LOGIN_USER", token:auth, id: res.id, screenName: res.screen_name });
                 callback();

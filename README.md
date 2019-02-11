@@ -6,6 +6,7 @@ Implementation conists of a Rails backend and React frontend.
 
 # Installation Instructions
 * Fork and clone this GIT repo. 
+* For running on localhost, rename Procfile-local to Procfile.
 * Set up backend by running bundle install, rake db:migrate and rake db:seed
 * Set up frontend by going to client folder and running npm install
 

@@ -19,29 +19,27 @@ class Room extends Component {
     
     constructor(props) {
         super(props);
-        this.token = localStorage.getItem('token');
-        this.wsURL = `${API_WS_ROOT}?token=${this.token}`;
-
-        let roomId = Number(this.props.match.params.id);
-        let room = this.props.rooms.find( (r) => r.id === roomId);
-        this.state = {
-            room: room,
-            messages: []
-        }
+        this.interval = 0;
+        this.roomId = this.props.match.params.id  
     }
-   
+
+    startInterval = () => {
+        this.interval = setInterval(this.checkMessageUpdates, 5000);
+    };
+
+    cleanUpInterval = () => {
+        clearInterval(this.interval);
+    };
+
+    checkMessageUpdates = () => {
+       const lastMessageIndex = this.props.currentRoom.messages.length - 1;
+       let lastMessage = this.props.currentRoom.messages[lastMessageIndex] || null;      
+       this.props.getMessageUpdates(this.roomId, lastMessage);
+    } 
+    
     componentDidMount() {
-        fetch(`/rooms/${this.state.room.id}`,
-            { 
-                headers: new Headers({
-                'Authorization': `${this.token}`, 
-                'Content-Type': 'application/json'
-                })                  
-            })
-          .then(res => res.json())
-          .then(room => {
-              this.setState({ messages: room.messages })});
-      };
+        this.props.getRoom(this.roomId, this.startInterval);
+    }  
 
     handleReceivedMessage = response => {
         const { message } = response;
@@ -59,13 +57,8 @@ class Room extends Component {
                     <Typography component="h1" variant="h4">
                         {this.state.room.name}
                     </Typography>
-                    <ActionCableConsumer
-                        key={this.state.room.id}  
-                        channel={{ channel: 'MessagesChannel', room: this.state.room.id }}
-                        onReceived={this.handleReceivedMessage}
-                    />                    
-                    <MessageList messages={this.state.messages} />
-                    <MessageForm roomId={this.state.room.id} />
+                    <MessageList messages={this.props.currentRoom.messages} />
+                    <MessageForm roomId={this.roomId} />
                 </Paper>
             </main>  
             </ActionCableProvider>    
@@ -75,7 +68,7 @@ class Room extends Component {
 
 const mapStateToProps = state => {
     return {
-      rooms: state.room.rooms
+      currentRoom: state.room.currentRoom   // currentRoom not set until component did mount
     }
 }
 export default compose (

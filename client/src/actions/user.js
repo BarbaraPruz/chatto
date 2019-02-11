@@ -9,7 +9,6 @@ function handleAPIErrors(res) {
 
 export function loginUser(credentials,callback) {
     return (dispatch) => {
-
         const request = {"user": {"email": credentials.email, "password": credentials.password}}
         const options = {
             method: 'POST',
@@ -19,7 +18,6 @@ export function loginUser(credentials,callback) {
             }
         };
         let auth;
-
         fetch("/login", options)
             .then(res => handleAPIErrors(res))        
             .then(res => {

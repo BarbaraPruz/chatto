@@ -11,11 +11,11 @@ import styles from 'components/Style'
 class MessageList extends Component {
 
     render() {
-        const { classes } = this.props;
+   //     const { classes } = this.props;
         return (
             <List>
                 {this.props.messages.map((message) => 
-                    <React.Fragment key={message.id}>
+                    <React.Fragment key={message.id} >
                         <Divider /> 
                         <ListItem>
                             <ListItemText 

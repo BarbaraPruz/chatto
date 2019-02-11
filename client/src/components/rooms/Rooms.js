@@ -28,7 +28,11 @@ class Rooms extends Component {
                 </Typography>
                 <Grid container spacing={16}>
                    {this.props.rooms.map((room) => 
+<<<<<<< HEAD
                         <Grid item xs={4} key={room.id}>
+=======
+                        <Grid key={room.id} item xs={4}>
+>>>>>>> noWebSockets
                             <RoomCard classes={classes} room={room}  />
                         </Grid> 
                     )}    

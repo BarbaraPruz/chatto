@@ -7,7 +7,7 @@ function handleAPIErrors(res) {
     return res;   
 }
 
-export function getRooms() {
+export function getRooms() { 
     return (dispatch) => {
         let token = localStorage.getItem("token");                     
         fetch(`/rooms`, 
@@ -27,9 +27,52 @@ export function getRooms() {
     };
 }
 
+export function getRoom(roomId, callback) { 
+    return (dispatch) => {
+        let token = localStorage.getItem("token");              
+        fetch(`/rooms/${roomId}`, 
+                { 
+                  headers: new Headers({
+                    'Authorization': `${token}`, 
+                    'Content-Type': 'application/json'
+                    })                  
+                })
+            .then(res => handleAPIErrors(res))        
+            .then(res => res.json())
+            .then (res =>{                
+                dispatch({type:"CURRENT_ROOM", payload: res});
+                callback();
+            })
+            .catch(function(error) {
+                console.log("Room Error",error);
+            })             
+    };
+}
 
+export function getMessageUpdates(roomId, lastMessage) {  
+    return (dispatch) => {
+        let token = localStorage.getItem("token"); 
+        let id = lastMessage ? lastMessage.id : 0;             
+        fetch(`/rooms/${roomId}/updates/${id}`, 
+                { 
+                  headers: new Headers({
+                    'Authorization': `${token}`, 
+                    'Content-Type': 'application/json'
+                    })                  
+                })
+            .then(res => handleAPIErrors(res))        
+            .then(res => res.json())
+            .then (res =>{     
+                if (res.length > 0)          
+                    dispatch({type:"UPDATE_MESSAGES", payload: res});
+            })
+            .catch(function(error) {
+                console.log("Message Update Error",error);
+            })             
+    };
+}
 
-export function addMessage(params) {
+export function addMessage(params) { 
     return (dispatch) => {
         let token = localStorage.getItem("token");  
         const request = {

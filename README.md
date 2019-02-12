@@ -8,7 +8,7 @@ Implementation conists of a Rails backend and React frontend.
 * Fork and clone this GIT repo. 
 * Set up backend by running bundle install, rake db:migrate and rake db:seed
 * Heroku vs Localhost changes: for localhost, 
-    - rename Procfile-save to Procfile (in root folder)
+    - copy Procfile-localhost to Procfile (in root folder)
     - in client/components/rooms/room.js, uncomment the WS_API_ROOT definition for localhost.
 
 * Set up frontend by going to client folder and running npm install

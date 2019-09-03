@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  
   devise_for :users,
              path: '',
              path_names: {
@@ -16,5 +17,4 @@ Rails.application.routes.draw do
     resources :messages
   end
   get 'rooms/:id/updates/:message_id', to: 'rooms#updates'
-  
 end

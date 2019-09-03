@@ -1,12 +1,20 @@
-u1 = User.create(:screen_name => "Lou", :email => "lou@domain.com", :password => "test")
-u2 = User.create(:screen_name => "admin", :email => "admin@domain.com", :password => "test", :admin => "true")
-u3 = User.create(:screen_name => "Bud", :email => "bud@domain.com", :password => "test")
+# frozen_string_literal: true
 
-r1 = Room.create(:name => "General", :description => "anything goes")
-r2 = Room.create(:name => "Sports", :description => "more than espn")
-r3 = Room.create(:name => "Travel", :description => "its the journey, not the destination")
+u1 = User.create(screen_name: 'Lou', email: 'lou@domain.com', password: 'test')
+User.create(screen_name: 'admin',
+            email: 'admin@domain.com',
+            password: 'test',
+            admin: 'true')
+u3 = User.create(screen_name: 'Bud', email: 'bud@domain.com', password: 'test')
 
-m1 = Message.create(:user_id => u1.id, :room_id => r2.id, :content => "Who's on first?")
-m2 = Message.create(:user_id => u3.id, :room_id => r2.id, :content => "Yes")
-m3 = Message.create(:user_id => u1.id, :room_id => r2.id, :content => " I mean the fellow's name")
-m4 = Message.create(:user_id => u3.id, :room_id => r2.id, :content => "Who")
+Room.create(name: 'General', description: 'anything goes')
+r2 = Room.create(name: 'Sports', description: 'more than espn')
+Room.create(name: 'Travel',
+            description: 'its the journey, not the destination')
+
+Message.create(user_id: u1.id, room_id: r2.id, content: "Who's on first?")
+Message.create(user_id: u3.id, room_id: r2.id, content: 'Yes')
+Message.create(user_id: u1.id,
+               room_id: r2.id,
+               content: " I mean the fellow's name")
+Message.create(user_id: u3.id, room_id: r2.id, content: 'Who')

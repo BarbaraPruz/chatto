@@ -1,0 +1,25 @@
+AllCops:
+  TargetRubyVersion: 2.6
+  Exclude:
+    - Gemfile
+    - Rakefile
+    - 'db/schema.rb'
+    - 'config/spring.rb'
+    - 'config/puma.rb'
+    - 'config/initializers/**/*'
+    - 'config/environments/**/*'
+    - 'bin/**/*'
+
+Documentation:
+    Enabled: false
+    
+Style/SymbolArray:
+  Enabled: true
+  EnforcedStyle: brackets
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Style/WordArray:
+  Enabled: true
+  EnforcedStyle: brackets

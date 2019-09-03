@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# The app controller
 class ApplicationController < ActionController::API
   def render_resource(resource)
     if resource.errors.empty?

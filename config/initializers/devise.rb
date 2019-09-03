@@ -9,7 +9,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '784f37bdb4deb4f9a85e01fb85088b96624b00f86913914887ac2c284ade3a72accdc960daa32536b971a090786a52d9a8bb5794cace0065c5882779b876adae'
-  
+
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
@@ -297,6 +297,6 @@ Devise.setup do |config|
       ['DELETE', %r{^/logout$}]
     ]
     jwt.expiration_time = 1.day.to_i
-  end 
-  config.navigational_formats = []   
+  end
+  config.navigational_formats = []
 end
